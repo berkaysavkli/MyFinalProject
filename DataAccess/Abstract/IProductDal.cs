@@ -11,8 +11,9 @@ namespace DataAccess.Abstract
         void Add(Product product);
         void Update(Product product);
         void Delete(Product product);
-
-        LinkedList<Product> GetAllByCategory(int categoryId);
+        
+        //Kategoriye göre listeleme işini yapıyor
+        List<Product> GetAllByCategory(int categoryId);
 
     }
 }

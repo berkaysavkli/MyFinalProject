@@ -23,25 +23,25 @@ namespace DataAccess.Concrete.InMemory
         public void Add(Product product)
         {
             _products.Add(product);
-
-            
+  
         }
 
         public void Delete(Product product)
         {
+            //LİNQ kullanarak listeyi dolaşma
             Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            //SingleOrDefaul her ürünü dolaşmaya yarar
+            //SingleOrDefault her ürünü dolaşmaya yarar
             _products.Remove(productToDelete);
-           
-            
+   
         }
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _products;
         }
 
-        public LinkedList<Product> GetAllByCategory(int categoryId)
+        // Kategoriye göre listeleme işini yapar
+        public List<Product> GetAllByCategory(int categoryId)
         {
             return _products.Where(p => p.CategoryId == categoryId).ToList();
         }
