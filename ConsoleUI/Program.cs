@@ -28,13 +28,25 @@ namespace ConsoleUI
         {
             //EfProductDal yerine InMemoryProductDal yazarsak memeory de çalışmış oluruz.
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetProductDetails())
-            // productManager. dan sonraki kısmı değiştirerek  yazdığımız farklı filtremelere
-            //göre verileri getiririz.
 
+            var result = productManager.GetProductDetails();
+
+            if(result.Success)
             {
-                Console.WriteLine(product.ProductName + "/"+ product.CategoryName);
+                foreach (var product in result.Data)
+                // productManager. dan sonraki kısmı değiştirerek  yazdığımız farklı filtremelere
+                //göre verileri getiririz.
+
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
         }
     }
 }
